@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guide - DTL</title>
+  <link rel="icon" type="image/svg+xml" href="Icon4.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (min-width: 1024px) {
+      :target {
+        scroll-margin-top: 7rem;
+      }
+    }
+
+    /* Link attivo */
+    .active {
+      color: #facc15;
+      font-weight: 600;
+    }
+
+    /* Nessuna transizione per aggiornamento istantaneo */
+    #toc a {
+      transition: none;
+    }
+    #active-bar, #sub-active-bar {
+      transition: none;
+    }
+
+    /* --- Navbar scroll behavior --- */
+.navbar-hide {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar-show {
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+    /* Barre inizialmente invisibili */
+    #active-bar, #sub-active-bar {
+      top: 0;
+      height: 0;
+      opacity: 0;
+    }
+    /* On mobile/tablet show box text and hide icons (no hover required) */
+    @media (max-width: 1024px) {
+      .group img { opacity: 0 !important; }
+      .group span { opacity: 1 !important; }
+      .group { cursor:default; }
+    }
+    
+  /* Gestisce la numerazione personalizzata 1.1.1., 1.1.2., ecc. */
+  ol.custom-counter {
+    counter-reset: section;
+  }
+  ol.custom-counter li {
+    list-style: none;
+    counter-increment: section;
+    position: relative;
+    padding-left: 3rem; /* spazio per i numeri */
+  }
+  ol.custom-counter li::before {
+    content: "1.1." counter(section) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700; /* grassetto */
+    color: #1f2937; /* Tailwind gray-800 */
+    text-decoration: underline;
+    text-decoration-color: #facc15; /* Tailwind yellow-400 */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  /* Contatore personalizzato per 2.2.1., 2.2.2., ecc. */
+  ol.custom-counter-12 {
+    counter-reset: section;
+    position: relative;
+  }
+
+  ol.custom-counter-12 li {
+    list-style: none;
+    counter-increment: section;
+    position: relative;
+    padding-left: 3rem; /* spazio per la numerazione */
+  }
+
+  /* Numero in grassetto + sottolineatura gialla */
+  ol.custom-counter-12 li::before {
+    content: "1.2." counter(section) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: #1f2937; /* gray-800 */
+    text-decoration: underline;
+    text-decoration-color: #facc15; /* Tailwind yellow-400 */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  
+  /* Contatore numerazione personalizzata 2.1.1., 2.1.2., ecc. */
+  ol.custom-counter-2 {
+    counter-reset: section;
+  }
+  ol.custom-counter-2 li {
+    list-style: none;
+    counter-increment: section;
+    position: relative;
+    padding-left: 3rem; /* spazio per i numeri */
+  }
+  ol.custom-counter-2 li::before {
+    content: "2.1." counter(section) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700; /* grassetto */
+    color: #1f2937; /* gray-800 */
+    text-decoration: underline;
+    text-decoration-color: #facc15; /* Tailwind yellow-400 */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  /* Contatore personalizzato per 2.2.1., 2.2.2., ecc. */
+  ol.custom-counter-22 {
+    counter-reset: section;
+    position: relative;
+  }
+
+  ol.custom-counter-22 li {
+    list-style: none;
+    counter-increment: section;
+    position: relative;
+    padding-left: 3rem; /* spazio per i numeri */
+  }
+
+  /* Numero in grassetto con sottolineatura gialla */
+  ol.custom-counter-22 li::before {
+    content: "2.2." counter(section) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: #1f2937; /* gray-800 */
+    text-decoration: underline;
+    text-decoration-color: #facc15; /* Tailwind yellow-400 */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  /* Contatore personalizzato per 3.1.1., 3.1.2., ecc. */
+  ol.custom-counter-31 {
+    counter-reset: section;
+    position: relative;
+  }
+
+  ol.custom-counter-31 li {
+    list-style: none;
+    counter-increment: section;
+    position: relative;
+    padding-left: 3rem; /* spazio per i numeri */
+  }
+
+  /* Numero in grassetto e sottolineato di giallo */
+  ol.custom-counter-31 li::before {
+    content: "3.1." counter(section) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: #1f2937; /* gray-800 */
+    text-decoration: underline;
+    text-decoration-color: #facc15; /* giallo Tailwind */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    
+  }
+  /* Contatore personalizzato per 3.2.1., 3.2.2., ecc. */
+  ol.custom-counter-32 {
+    counter-reset: section;
+    position: relative;
+  }
+
+  ol.custom-counter-32 li {
+    list-style: none;
+    counter-increment: section;
+    position: relative;
+    padding-left: 3rem; /* spazio per la numerazione */
+  }
+
+  /* Numero in grassetto e sottolineato giallo */
+  ol.custom-counter-32 li::before {
+    content: "3.2." counter(section) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: #1f2937; /* gray-800 */
+    text-decoration: underline;
+    text-decoration-color: #facc15; /* giallo Tailwind */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  /* Contatore personalizzato per 3.3.1., 3.3.2., ecc. */
+  ol.custom-counter-33 {
+    counter-reset: section;
+    position: relative;
+  }
+
+  ol.custom-counter-33 li {
+    list-style: none;
+    counter-increment: section;
+    position: relative;
+    padding-left: 3rem; /* spazio per la numerazione */
+  }
+
+  /* Numero in grassetto e sottolineato di giallo */
+  ol.custom-counter-33 li::before {
+    content: "3.3." counter(section) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: #1f2937; /* gray-800 */
+    text-decoration: underline;
+    text-decoration-color: #facc15; /* giallo Tailwind */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  /* Contatore personalizzato per 3.4.1., 3.4.2., ecc. */
+  ol.custom-counter-34 {
+    counter-reset: section;
+    position: relative;
+  }
+
+  ol.custom-counter-34 li {
+    list-style: none;
+    counter-increment: section;
+    position: relative;
+    padding-left: 3rem; /* spazio per la numerazione */
+  }
+
+  /* Numero in grassetto e sottolineato di giallo */
+  ol.custom-counter-34 li::before {
+    content: "3.4." counter(section) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: #1f2937; /* gray-800 */
+    text-decoration: underline;
+    text-decoration-color: #facc15; /* giallo Tailwind */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  /* Contatore personalizzato per 3.5.1., 3.5.2., ecc. */
+  ol.custom-counter-35 {
+    counter-reset: section;
+    position: relative;
+  }
+
+  ol.custom-counter-35 li {
+    list-style: none;
+    counter-increment: section;
+    position: relative;
+    padding-left: 3rem; /* spazio per la numerazione */
+  }
+
+  /* Numero in grassetto e sottolineato di giallo */
+  ol.custom-counter-35 li::before {
+    content: "3.5." counter(section) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: #1f2937; /* gray-800 */
+    text-decoration: underline;
+    text-decoration-color: #facc15; /* giallo Tailwind */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  /* Contatore personalizzato per 4.1.1., 4.1.2., ecc. */
+  ol.custom-counter-41 {
+    counter-reset: section;
+    position: relative;
+  }
+
+  ol.custom-counter-41 li {
+    list-style: none;
+    counter-increment: section;
+    position: relative;
+    padding-left: 3rem; /* spazio per la numerazione */
+  }
+
+  /* Numero in grassetto e sottolineato giallo */
+  ol.custom-counter-41 li::before {
+    content: "4.1." counter(section) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: #1f2937; /* gray-800 */
+    text-decoration: underline;
+    text-decoration-color: #facc15; /* giallo Tailwind */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  </style>
+</head>
+<body class="bg-white text-gray-900">
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="bg-gray-900 text-white fixed w-full z-[100] top-0 left-0 shadow">
+    <div class="container mx-auto px-8 lg:px-2 ">
+      <!-- use a 12-col grid so we can align the link group with the main grid's aside on lg -->
+      <div class="grid grid-cols-12 items-center h-20 gap-10">
+        <a href="index.html" class="col-span-6 lg:col-span-3 flex items-center space-x-2">
+          <!--<img src="logo.svg" alt="Logo" class="w-8 h-8">-->
+        <h1 class="sm:block text-2xl md:text-4xl font-semibold leading-tight tracking-tight whitespace-nowrap text-yellow-300">Design Transparency Labels</h1>
+        </a>
+
+        <!-- Desktop link group: place it in the same columns as the aside (starts at col 10) -->
+        <div id="nav-link-group" class="grid col-span-6 lg:col-start-9 lg:col-span-4 space-x-4 sm:space-x-6 md:space-x-8 lg:space-x-16 hidden lg:flex ">
+          <a href="index.html" class="hover:text-yellow-300 text-lg sm:text-xl leading-tight tracking-tight">Home</a>
+          <a href="tesi.html" class="hover:text-yellow-300 text-lg sm:text-xl leading-tight tracking-tight">Thesis</a>
+          <a href="contatti.html" class="hover:text-yellow-300 text-lg sm:text-xl leading-tight tracking-tight">Contacts</a>
+        </div>
+
+        <!-- Mobile menu button aligned to the right on small and medium screens; hidden from lg up -->
+        <button id="menu-btn" aria-label="Apri menu"
+  class="lg:hidden absolute right-4 top-1/2 -translate-y-1/2 p-2 
+         flex items-center justify-center
+         bg-transparent hover:bg-gray-800 rounded z-50">
+
+  <div class="flex flex-col justify-center items-center gap-1">
+    <span class="w-6 h-0.5 bg-white block"></span>
+    <span class="w-6 h-0.5 bg-white block"></span>
+    <span class="w-6 h-0.5 bg-white block"></span>
+  </div>
+</button>
+
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- OVERLAY + MENU MOBILE -->
+  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-[90]"></div>
+  <div id="mobile-menu" class="fixed top-0 right-0 w-3/4 h-full bg-gray-800 text-white transform translate-x-full transition-transform duration-300 z-[120] flex flex-col">
+    <div class="p-6 flex justify-end">
+      <button id="close-btn" class="text-2xl font-bold">&times;</button>
+    </div>
+    <nav class="flex flex-col text-lg font-medium space-y-4 px-6">
+      <a href="index.html" class="hover:text-yellow-400">Home</a>
+      <a href="tesi.html" class="hover:text-yellow-400">Thesis</a>
+      <a href="contatti.html" class="hover:text-yellow-400">Contacts</a>
+    </nav>
+  </div>
+
+  <!-- CONTENUTO -->
+  <main class="pt-24 md:pt-28 pb-16">
+  <div class="container mx-auto px-8 lg:px-2 grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+      <!-- TESTO PRINCIPALE -->
+      <div class="lg:col-span-9">
+        <h1 class="text-3xl md:text-5xl font-bold leading-tight tracking-tight mb-4 md:mb-8 pt-2">Guide to Design Transparency Labels</h1>
+      
+        <!-- SEZIONE 1 -->
+        <h1 id="Obiettivi" class="text-2xl md:text-4xl font-bold mb-2">1. Role</h1>
+        <hr class="border-t border-gray-400">
+        <p class="text-base sm:text-base leading-relaxed mt-2 mb-3">
+          The presence of <i>damaging patterns</i> within digital platforms has become increasingly manipulative over time, pushing users to spend more time online and lose awareness of their actions. <br />
+          <span class="block mt-2"><strong class="font-semibold">Design Transparency Labels</strong> were created to counter this phenomenon by offering clear information and useful tools to recognize such dynamics. <br />
+          <span class="block mt-2">Their purpose is to <strong class="font-semibold">enable an immediate understanding of the mechanisms that shape the feed and recommendation systems,</strong> including through small insights that make recurring patterns visible. <br />
+          <span class="block mt-2">In addition to this informational role, DTLs also take on an <strong class="font-semibold">educational</strong> function, helping users develop greater awareness of the digital processes they interact with daily.
+        </p>
+
+        <!-- SOTTO-SEZIONE 1 -->
+        <h2 id="Target" class="text-xl font-semibold mt-6 mb-2 flex items-center gap-2">
+          <u class="decoration-1 underline-offset-4 decoration-yellow-400">1.1. Target</u>
+        </h2>
+        <div class="flex items-start gap-3">
+        <div class="flex items-stretch gap-2">
+          <span class="w-[6px] bg-gray-300 rounded-full self-stretch"></span>
+        <p class="text-xl sm:text-md leading-tight">
+          <strong class="font-semibold">Design Transparency Labels must address a broad and diverse audience, adapting to different levels of digital literacy and experience.</strong> <br />
+          </p>
+        </div>
+        </div>
+          <span class="block mt-2 text-base sm:text-base leading-tight">Practical strategies:</span>
+
+        <ol class="custom-counter mt-2 mb-3 space-y-3 text-base text-gray-800">
+  <li>
+    Design DTLs for the <strong class="font-semibold">same audience</strong>
+    as the digital platform in which they are integrated.
+  </li>
+  <li>
+    Avoid technical or overly specialized references: DTLs must be
+    <strong class="font-semibold">understandable by anyone</strong>, even by those without
+    advanced digital skills.
+  </li>
+  <li>
+    Show DTLs only when they are
+    <strong class="font-semibold">relevant to the user’s behavior:</strong>
+    avoid showing them if the user’s actions are not affected by the pattern.
+  </li>
+</ol>
+
+<!-- Box grigia -->
+<div class="w-full rounded-xl mt-8 mb-2 bg-gray-50 p-4 sm:p-6">
+
+  <!-- Titolo -->
+  <h3 class="text-xl font-semibold leading-tight mb-4 px-1 underline decoration-yellow-400 decoration-1 underline-offset-4">
+    Example – TikTok
+  </h3>
+
+  <!-- Sezione immagini affiancate + icone laterali -->
+<div class="w-full max-w-4xl mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
+
+    <!-- Colonna X + immagine (icone a sinistra) -->
+    <div class="flex items-center justify-center md:justify-start gap-3">
+      <div class="text-red-500 text-4xl leading-none select-none translate-y-[-5px]">
+        ❌
+      </div>
+      <img
+        src="Target1.svg"
+        alt="Phone mockup"
+        class="w-full max-w-[260px] sm:max-w-[300px] h-auto object-contain select-none"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Colonna ✓ + immagine (icone a sinistra) -->
+    <div class="flex items-center justify-center md:justify-start gap-3">
+      <div class="text-green-500 text-4xl leading-none select-none translate-y-[-5px]">
+        ✅
+      </div>
+      <img
+        src="Target2.png"
+        alt="Phone mockup"
+        class="w-full max-w-[260px] sm:max-w-[300px] h-auto object-contain select-none"
+        loading="lazy"
+      />
+    </div>
+
+  </div>
+</div>
+
+  <!-- Testo sotto le immagini -->
+  <div class="mt-6 text-gray-900">
+    <p class="text-base leading-relaxed mb-3">
+      The correct example follows <strong>all</strong> the <u>practical strategies</u> of this guideline:
+    </p>
+    <ol class="relative space-y-3 pl-3">
+
+  <!-- Punto 1 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>1.1.1</strong> because TikTok is a platform with a predominantly young audience, and the communication style is adapted to <strong>match the platform’s target</strong>;
+      </p>
+    </div>
+  </li>
+
+  <!-- Punto 2 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>1.1.2</strong> because it uses <strong>simple and accessible language</strong>, while the incorrect example uses technical terms that are not appropriate;
+      </p>
+    </div>
+  </li>
+
+  <!-- Punto 3 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>1.1.3</strong> because the label is shown to a user who is <strong>interacting</strong> with the TikTok feed, which is influenced by damaging patterns.
+      </p>
+    </div>
+  </li>
+
+</ol>
+
+  </div>
+
+</div>
+
+      <!-- SOTTO-SEZIONE 2 -->
+        <h2 id="Percezione" class="text-xl font-semibold mt-6 mb-2 flex items-center gap-2">
+          <u class="decoration-1 underline-offset-4 decoration-yellow-400">1.2. Perception and impact</u>
+        </h2>
+        <div class="flex items-start gap-3">
+        <div class="flex items-stretch gap-2">
+          <span class="w-[6px] bg-gray-300 rounded-full self-stretch"></span>
+            <p class="text-xl sm:text-md leading-tight">
+          <strong class="font-semibold">Use DTLs as tools that support digital wellbeing and help users build a trusting relationship with the platform.</strong> <br />     
+              </p>
+        </div>
+        </div>
+<span class="block mt-2 text-base sm:text-base leading-tight">Practical strategies:</span>
+
+      <ol class="custom-counter-12 mt-2 mb-3 space-y-3 text-base text-gray-800">
+  <li>
+    <div>
+      <p class="text-base mt-1 translate-y-[-1px]">
+        Design the labels as
+        <strong class="font-semibold">a companion-like presence,</strong>
+        not as an element that judges or imposes limits.
+      </p>
+    </div>
+  </li>
+  <li>
+    <div>
+      <p class="text-base mt-1 translate-y-[-1px]">
+        Use positive and collaborative messages instead of highlighting
+        mistakes or “incorrect” behaviors.
+      </p>
+    </div>
+  </li>
+  <li>
+    <div>
+      <p class="text-base mt-1 translate-y-[-1px]">
+        Consider the possibility of
+        <strong class="font-semibold">
+          simulating a digital assistant or friendly advisor,
+        </strong>
+        rather than a technical warning.
+      </p>
+    </div>
+  </li>
+</ol>
+
+<!-- Box grigia a tutta larghezza della colonna testo -->
+<div class="w-full rounded-xl mt-8 mb-2 bg-gray-50 p-4 sm:p-6">
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-start">
+
+    <!-- Contenitore immagine + titolo -->
+<div class="flex flex-col items-center sm:items-start gap-0 sm:gap-4">
+      <h3
+  class="text-xl font-semibold leading-tight underline decoration-yellow-400 decoration-1 underline-offset-4 mb-0 mt-0 px-1 mb-2"
+>
+  Example – YouTube
+</h3>
+
+
+      <img
+        src="Percezione_impatto2.svg"
+        alt="Phone mockup"
+        class="h-auto max-w-[300px] object-contain select-none mt-2 sm:-mt-2 md:mt-0"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Testo allineato all'inizio dell'immagine -->
+    <div class="flex-1 sm:mt-[2rem] text-gray-900">
+      <p class="text-base mt-1 mb-3 translate-y-[5px]">
+      The <u>practical strategies</u> used here are <strong>2</strong>:</p>
+      <ol class="relative space-y-8 pl-3">
+  
+  <!-- Punto 1 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1.5 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base mt-1 translate-y-[4px] translate-x-[-5px]">strategy <strong>1.2.1</strong> because the icon is meant to simulate a <strong>friendly presence</strong>;</p>
+    </div>
+  </li>
+
+  <!-- Punto 2 -->
+  <li class="relative">
+    <span class="absolute -left-3 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow translate-y-[-15px]"></span>
+    <div class="ml-5">
+      <p class="text-base mt-1 translate-y-[-16px] translate-x-[-5px]">strategy <strong>1.2.2</strong> because it uses <strong>positive messages</strong> that do not blame the user, but instead <strong>explain</strong> the pattern.</p>
+    </div>
+  </li>
+
+</ol>
+
+    </div>
+
+  </div>
+
+  <!-- SECONDO BLOCCO -->
+<div class="flex flex-col gap-4 sm:flex-row sm:items-start mt-8">
+
+  <!-- Immagine + titolo -->
+  <div class="flex flex-col items-center sm:items-start">
+    <h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4">Example – Amazon</h3>
+    <img
+      src="Percezione_impatto1.svg"
+      alt="Phone mockup"
+      class="h-auto max-w-[300px] object-contain select-none mt-2 md:mt-0"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Testo allineato all'inizio dell'immagine -->
+    <div class="flex-1 sm:mt-[2rem] text-gray-900">
+      <p class="text-base mt-1 mb-3 translate-y-[5px]">
+      The <u>practical strategies</u> used here are <strong>2</strong>:</p>
+      <ol class="relative space-y-8 pl-3">
+
+      <!-- Punto 1 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1.5 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base mt-1 translate-y-[4px] translate-x-[-5px]">strategy <strong>1.2.2</strong> because it uses <strong>positive messages</strong> that do not blame the user, but instead <strong>explain</strong> the pattern.</p>
+    </div>
+  </li>
+
+  <!-- Punto 2 -->
+  <li class="relative">
+    <span class="absolute -left-3 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow translate-y-[-15px]"></span>
+    <div class="ml-5">
+      <p class="text-base mt-1 translate-y-[-16px] translate-x-[-5px]">strategy <strong>1.2.3</strong> is applied by using Amazon’s internal AI as a <strong>digital wellbeing assistant</strong>, offering the user a <strong>supportive figure</strong> to interact with.</p>
+    </div>
+  </li>
+
+</ol>
+
+    </div>
+
+</div>
+</div>
+
+
+      <!-- SEZIONE 2 -->
+        <h1 id="Linguaggio" class="text-2xl md:text-4xl font-bold mt-8 mb-2">2. Language</h1>
+        <hr class="border-t border-gray-400">
+        <p class="text-base sm:text-base leading-relaxed mt-2 mb-3">
+            Language is one of the <strong class="font-semibold">most influential elements</strong> in the design of Design Transparency Labels.<br />
+          <span class="block mt-2">Since DTLs are created to make the mechanisms operating <strong class="font-semibold">behind digital interfaces</strong> understandable, it is essential that they communicate in a way that is <strong class="font-semibold">clear, accessible and consistent</strong> with the audience they are addressing.<br />
+          <span class="block mt-2">Only <strong class="font-semibold">precise and inclusive</strong> language can guarantee <strong class="font-semibold">genuine transparency</strong>.
+        </p>
+        <!-- SOTTO-SEZIONE 1 -->
+        <h2 id="Tonodivoce" class="text-xl font-semibold mt-6 mb-2 flex items-center gap-2">
+          <u class="decoration-1 underline-offset-4 decoration-yellow-400">2.1 Tone of voice</u>
+        </h2>
+        <div class="flex items-start gap-3">
+        <div class="flex items-stretch gap-2">
+          <span class="w-[6px] bg-gray-300 rounded-full self-stretch"></span>
+        <p class="text-xl sm:text-md leading-tight">
+          <strong class="font-semibold">Use a firm and authoritative tone that guides the user in understanding what is happening, helps them orient themselves, and conveys the feeling of being in control of their time.</strong> <br />
+          </p>
+        </div>
+        </div>
+          <span class="block mt-2 text-base sm:text-base leading-tight">Practical strategies:</span>
+
+        <ol class="custom-counter-2 mt-2 mb-3 space-y-3 text-base text-gray-800">
+
+          <li>
+          <div>
+          <p class="text-base mt-1 translate-y-[-1px]">Avoid any form of <strong class="font-semibold">blaming the user.</strong></p>
+          </div>
+          </li>
+        <li>
+          <div>
+          <p class="text-base mt-1 translate-y-[-1px]">Use <strong class="font-semibold">a personal tone</strong> to foster a sense of closeness and engagement with the user.</p>
+          </div>
+        </li>
+        
+        <li>
+          <div>
+            <p class="text-base mt-1 translate-y-[-1px]"><strong class="font-semibold">Avoid distant, impersonal language.</strong> <br />
+              <div class="text-gray-500">Use <strong class="font-semibold">short, direct and dynamic</strong> sentences that break the automatisms created by damaging patterns.</div></p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="text-base mt-1 translate-y-[-1px]">For <strong class="font-semibold">e-commerce platforms,</strong> the tone should be <strong class="font-semibold">professional and consistent</strong> with the platform’s brand identity.<br />
+              <div class="text-gray-500">Users invest money in these spaces, so it is important to find a <strong class="font-semibold">balance between authority and empathy.</strong></div></p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="text-base mt-1 translate-y-[-1px]"><strong class="font-semibold">The language of DTLs must be consistent with that of the platform hosting them.</strong> <br />
+              <div class="text-gray-500">A tone or communication style that feels out of place may make the information seem less reliable or even disconnected from the user’s experience.</div></p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="text-base mt-1 translate-y-[-1px]"><strong class="font-semibold">Always include a brief explanation of why a pattern can be harmful.</strong> <br />
+              <div class="text-gray-500">Understanding the reason helps the user recognize the mechanism and develop more aware behaviors on the platform.</div></p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="text-base mt-1 translate-y-[-1px]"><strong class="font-semibold">Integrate small textual microinteractions</strong> where possible <i>(e.g. “Got it”, “Show me more”, “Ignore for now”)</i> that allow the user to choose how to proceed. 
+              <br />
+              <div class="text-gray-500">Small actions like these <strong class="font-semibold">increase the sense of control</strong> and make the communication more dialogic and natural.</div></p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="text-base mt-1 translate-y-[-1px]"><strong class="font-semibold">Encourage user reflection</strong> through targeted questions that invite them to think about their behaviors or about the platform’s dynamics. 
+              <br />
+              <div class="text-gray-500"><strong class="font-semibold">Strategic questions</strong> increase cognitive engagement and foster deeper awareness without being invasive or moralizing.</div></p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="text-base mt-1 translate-y-[-1px]"><strong class="font-semibold">Make the connections between user actions and the content being shown explicit.</strong> <br />
+              <div class="text-gray-500">This helps the user understand the nature and logic of damaging patterns.</div></p>
+          </div>
+        </li>
+      </ol>
+
+      <!-- BOX GRIGIO -->
+<div class="w-full rounded-xl mt-8 mb-2 bg-gray-50 p-4 sm:p-6">
+<h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4">
+        Example
+      </h3>
+  <!-- BLOCCO AFFERMAZIONE SBAGLIATA -->
+  <div class="flex items-start gap-4 mb-2 mt-6">
+    <!-- Icona -->
+    <div class="text-red-500 text-4xl leading-none select-none ml-1">✅</div>
+
+    <!-- Testo -->
+    <div class="flex-1 text-gray-900">
+      <p class="text-base mt-1 translate-y-[-8px]">
+The feed will keep showing you new content <strong>without interruptions</strong>. This mechanism pushes you <strong>to keep scrolling without taking breaks</strong>, making it harder to perceive the time spent on the platform.    </p>
+    </div>
+  </div>
+
+  <!-- BLOCCO AFFERMAZIONE GIUSTA -->
+  <div class="flex items-start gap-4">
+    <!-- Icona -->
+    <div class="text-green-500 text-4xl leading-none select-none ml-1">❌</div>
+
+    <!-- Testo -->
+    <div class="flex-1 text-gray-900">
+      <p class="text-base mt-1 translate-y-[2px]">
+You should take a break. You’ve wasted <strong>too much time here</strong>.</p>
+    </div>
+  </div>
+
+  <!-- Testo allineato all'inizio dell'immagine -->
+    <div class="flex-1 sm:mt-[2rem] text-gray-900">
+      <p class="text-base mb-3 mt-4 sm:mt-0">
+      <u>The practical strategies</u> used in this example are <strong>4</strong>:</p>
+
+<ol class="relative space-y-3 pl-3">
+
+  <!-- Punto 1 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>2.1.1</strong>, because it assigns <strong>responsibility</strong> to the recommendation system and not to the <strong>user</strong>;
+      </p>
+    </div>
+  </li>
+
+  <!-- Punto 2 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>2.1.2</strong>, because it adopts a perspective that stands on the <strong>user’s</strong> side, conveying closeness and support;
+      </p>
+    </div>
+  </li>
+
+  <!-- Punto 3 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>2.1.6</strong>, because it clarifies why the <strong>pattern is harmful,</strong> making its impact immediately understandable;
+      </p>
+    </div>
+  </li>
+
+  <!-- Punto 4 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>2.1.9</strong>, because it links the pattern to a <strong>cause</strong> and an <strong>effect,</strong> helping the user understand the dynamics that generate it.
+      </p>
+    </div>
+  </li>
+
+</ol>
+</div>
+</div>
+
+      <!-- SOTTO-SEZIONE 2 -->
+        <h2 id="Gancio" class="text-xl font-semibold mt-6 mb-2 flex items-center gap-2">
+          <u class="decoration-1 underline-offset-4 decoration-yellow-400">2.2 Hook</u>
+        </h2>
+        <div class="flex items-start gap-3">
+        <div class="flex items-stretch gap-2">
+          <span class="w-[4px] bg-gray-300 rounded-full self-stretch"></span>
+            <p class="text-xl sm:text-md leading-tight">
+          <strong class="font-semibold">Use a hook to draw attention to the DTL.</strong>    
+              </p>
+        </div>
+        </div>
+<span class="block mt-2 mb-2 text-base sm:text-base leading-tight">Practical strategies:</span>
+
+      <ol class="custom-counter-22 space-y-5 mt-2 mb-3 text-base text-gray-800">
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">The hook can be a question or a data point that stimulates reflection.</strong><br />
+      <span class="text-gray-500">
+        This approach <strong class="font-semibold">helps engage the user</strong> in a natural way
+        and supports awareness without interrupting the experience.
+      </span>
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      Build the hook using <strong class="font-semibold">real, user-relevant data.</strong><br />
+      <span class="text-gray-500">
+        The more authentic and personal the information is, the greater the
+        <strong class="font-semibold">emotional impact</strong> and the effectiveness in capturing the user’s attention.
+      </span>
+    </p>
+  </li>
+</ol>
+
+<!-- Box grigia a tutta larghezza della colonna testo -->
+<div class="w-full rounded-xl mt-8 mb-2 bg-gray-50 p-4 sm:p-6">
+  <div class="flex flex-col gap-4 md:flex-row md:items-start">
+
+    <!-- Contenitore immagine + titolo -->
+    <div class="flex flex-col items-center md:items-start">
+      <h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4">
+        Example – Amazon
+      </h3>
+
+      <img
+        src="Gancio1.svg"
+        alt="Phone mockup"
+        class="h-auto max-w-[300px] object-contain select-none mt-2 sm:mt-0"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Testo allineato all'inizio dell'immagine -->
+    <div class="flex-1 sm:mt-[2.5rem] text-gray-900">
+      <p class="text-base mb-3"><u>The practical strategies</u> adopted are shared across all the examples shown:</p>
+
+<ol class="relative space-y-3 pl-3">
+
+  <!-- Punto 1 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>2.2.1</strong>, because the labels include <strong>useful data and information</strong> that can trigger user reflection in a <strong>quick and conscious</strong> way;
+      </p>
+    </div>
+  </li>
+
+  <!-- Punto 2 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>2.2.2</strong>, because the data shown are <strong>personal and real,</strong> fostering empathy and emotional involvement and helping the user recognize their <strong>own behavior</strong>. 
+      </p>
+    </div>
+  </li>
+
+</ol>
+        <p class="text-base mt-3">The examples focus on the <strong>number of products viewed</strong> (for e-commerce), the <strong>time</strong> spent on the app, and the <strong>number of scrolls</strong> performed (for social media).</p>
+
+    </div>
+
+  </div>
+
+  <!-- SECONDO BLOCCO -->
+<div class="flex flex-col gap-4 md:flex-row md:items-start mt-8">
+
+  <!-- Immagine + titolo -->
+  <div class="flex flex-col items-center md:items-start">
+    <h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4">Example – YouTube</h3>
+    <img
+      src="Gancio2.svg"
+      alt="Phone mockup"
+      class="h-auto max-w-[300px] object-contain select-none mt-2"
+      loading="lazy"
+    />
+  </div>
+  <div class="flex flex-col items-center md:items-start md:ml-6">
+    <h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4">Example – TikTok</h3>
+    <img
+      src="Gancio3.svg"
+      alt="Phone mockup"
+      class="h-auto max-w-[300px] object-contain select-none mt-4"
+      loading="lazy"
+    />
+  </div>
+
+</div>
+</div>
+
+
+            <!-- SEZIONE 3 -->
+        <h1 id="Design" class="text-2xl md:text-4xl font-bold mt-8 mb-2">3. Design</h1>
+        <hr class="border-t border-gray-400">
+        <p class="text-base sm:text-base leading-relaxed mt-2 mb-3">
+            The <i>design of DTLs</i> requires a balance between <strong class="font-semibold">clarity</strong>, <strong class="font-semibold">aesthetics</strong> and <strong class="font-semibold">functionality</strong>.<br />
+          <span class="block mt-2">The interfaces of digital platforms differ significantly from one another and host design patterns that are <strong class="font-semibold">equally diverse</strong>: even when the pattern is the same, its appearance and its interaction with the user <strong class="font-semibold">may vary</strong> depending on the context of use and the platform’s visual style.<br />
+          <span class="block mt-2">For this reason, <i>every visual and structural choice</i> must contribute to making information <strong class="font-semibold">accessible</strong> and <strong class="font-semibold">consistent</strong> with the environment in which the DTL is placed.
+          <span class="block mt-2"><strong class="font-semibold">Design</strong> is not just <i>a matter of aesthetics</i>, but a <strong class="font-semibold">means of conveying transparency</strong> in an intuitive, recognizable, and context-aware way.
+
+          </p>
+        <!-- SOTTO-SEZIONE 1 -->
+        <h2 id="Forme" class="text-xl font-semibold mt-6 mb-2 flex items-center gap-2">
+          <u class="decoration-1 underline-offset-4 decoration-yellow-400">3.1 Shape and size</u>
+        </h2>
+        <div class="flex items-start gap-3">
+        <div class="flex items-stretch gap-2">
+          <span class="w-[6px] bg-gray-300 rounded-full self-stretch"></span>
+        <p class="text-xl sm:text-md leading-tight">
+          <strong class="font-semibold">The shape of Design Transparency Labels must be adaptable and carefully calibrated in relation to the surrounding interface elements.<br /> </strong>
+          </p>
+        </div>
+        </div>
+          <span class="block mt-2 text-base sm:text-base leading-tight">Practical strategies:</span>
+
+        <ol class="custom-counter-31 space-y-5 mt-2 pl-2 mb-3 text-base text-gray-800">
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">Leverage the available space to design wider and more stable DTLs</strong>, visually integrated with the other interface elements.
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">Avoid making the label intrusive compared to the other interface elements.</strong>
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">Maintain consistency with existing visual elements</strong> so that the DTL appears integrated into the interface and is not perceived as something extraneous.
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      When the available space is limited, <strong class="font-semibold">condense the message into smaller areas</strong>, using <strong class="font-semibold">keywords, symbols or colours</strong> to ensure clarity and immediate understanding.
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">Limit the use of banners or overlay windows to cases where there is not enough space to integrate the label.</strong> </br>
+      <div class="text-gray-500">These solutions introduce a <strong class="font-semibold">more invasive</strong> level of interaction and tend to generate an <strong class="font-semibold">immediate dismissal</strong> by the user.</div>
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">Adapt the shape and size of DTLs to the context</strong>, choosing approaches that feel organic within the platform and keep <strong class="font-semibold">user attention high</strong>, reducing habituation.
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">Use overlay banners as the main label only as a last resort,</strong> when lighter, more integrated solutions are not sufficient to communicate effectively.
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">Provide a deeper level of information when the user interacts with the DTL</strong>, opening an overlay banner or a dedicated page that explains the pattern in detail and suggests possible actions or additional resources.
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      Consider <strong>integrating the DTL into the user journey</strong>, dedicating a specific area on the page when the context allows it. </br>
+      <div class="text-gray-500">This solution can make the label more organic and visually consistent with the interface flow, without interrupting it.</div>
+    </p>
+  </li>
+</ol>
+<!-- Box grigia a tutta larghezza della colonna testo -->
+<div class="w-full rounded-xl mt-8 mb-2 bg-gray-50 p-4 sm:p-6">
+  <div class="flex flex-col gap-4 md:flex-row md:items-start">
+
+    <!-- Contenitore immagine + titolo -->
+    <div class="flex flex-col items-center md:items-start">
+      <h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4">
+        Example – TikTok
+      </h3>
+
+      <img
+        src="Posizione1.svg"
+        alt="Phone mockup"
+        class="h-auto max-w-[300px] object-contain select-none mt-2 sm:mt-0"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Testo allineato all'inizio dell'immagine -->
+    <div class="flex-1 sm:mt-[2rem] text-gray-900">
+      <p class="text-base mb-3"><u>The practical strategies</u> adopted are shared across all the examples shown:</p>
+
+<ol class="relative space-y-3 pl-3">
+
+  <!-- Punto 1 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>3.1.1</strong>, because all the labels <strong>fully exploit the available space</strong>, extending the label as much as possible within the interface;
+      </p>
+    </div>
+  </li>
+
+  <!-- Punto 2 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>3.1.2</strong>, because the labels retain a <strong>low level of intrusiveness</strong>, allowing the user to continue consuming content <strong>without interruptions</strong>;
+      </p>
+    </div>
+  </li>
+
+  <!-- Punto 3 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>3.1.3</strong>, because <strong>visual consistency</strong> with other interface elements is preserved: in particular, the TikTok example mirrors the shape and size of the typical top notifications;
+      </p>
+    </div>
+  </li>
+
+  <!-- Punto 4 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>3.1.4</strong>, because given the limited available space, both the icons and the message were carefully selected, keeping them <strong>clear</strong> and <strong>essential</strong>.
+      </p>
+    </div>
+  </li>
+
+</ol>
+    </div>
+
+  </div>
+  <!-- SECONDO BLOCCO -->
+<div class="flex flex-col gap-4 md:flex-row md:items-start mt-8">
+
+  <!-- Immagine + titolo -->
+  <div class="flex flex-col items-center md:items-start">
+    <h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4">Example – YouTube</h3>
+    <img
+      src="Form2.png"
+      alt="Phone mockup"
+      class="h-auto max-w-[300px] object-contain select-none mt-2"
+      loading="lazy"
+    />
+  </div>
+  <div class="flex flex-col items-center md:items-start md:ml-6">
+    <h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4">Example – Amazon</h3>
+    <img
+      src="Form3.png"
+      alt="Phone mockup"
+      class="h-auto max-w-[300px] object-contain select-none mt-4"
+      loading="lazy"
+    />
+  </div>
+
+</div>
+</div>
+
+      <!-- SOTTO-SEZIONE 2 -->
+        <h2 id="Tempismo" class="text-xl font-semibold mt-6 mb-2 flex items-center gap-2">
+          <u class="decoration-1 underline-offset-4 decoration-yellow-400">3.2 Timing</u>
+        </h2>
+        <div class="flex items-start gap-3">
+        <div class="flex items-stretch gap-2">
+          <span class="w-[6px] bg-gray-300 rounded-full self-stretch"></span>
+            <p class="text-xl sm:text-md leading-tight">
+          <strong class="font-semibold">Carefully curate the timing of when DTLs appear: they should be shown at the right moment, neither too early nor too late, to maximise awareness and the effectiveness of the intervention.</strong>    
+              </p>
+        </div>
+        </div>
+<span class="block mt-2 mb-2 text-base sm:text-base leading-tight">Practical strategies:</span>
+
+     <ol class="custom-counter-32 space-y-5 mt-2 pl-2 mb-3 text-base text-gray-800">
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      Place the DTL on the page or in the section where the pattern <strong class="font-semibold">actually occurs</strong>.
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong>Make DTLs appear at irregular and unpredictable intervals</strong> to avoid visual habituation
+      and keep attention high. <br />
+      <div class="text-gray-500">Their effectiveness depends on their <strong class="font-semibold">ability to surprise</strong> and adapt to user behaviour, not on frequency alone.</div>
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">Avoid keeping DTLs constantly visible.</strong><br />
+      <div class="text-gray-500">Except for specific cases, it is preferable that labels appear only at the <strong class="font-semibold">most relevant moments</strong> in the user journey, in order to preserve their effectiveness and communicative impact.</div>
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">Vary DTLs to avoid monotony,</strong> but retain consistent visual elements
+      that make their meaning clear, such as a colour, an icon or a style.
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      Define precisely the time interval between DTL appearances, based on <strong class="font-semibold">data and user behaviour patterns.</strong><br />
+      <div class="text-gray-500">
+      Planning frequency consciously helps maintain <strong class="font-semibold">communicative effectiveness</strong>, avoiding both excessive repetition and poorly timed interruptions.
+      </div>
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong>Avoid allowing the DTL to be closed immediately.</strong><br />
+      <div class="text-gray-500">Keep it visible long enough to ensure the <strong class="font-semibold">message can be read</strong>, supporting understanding without generating frustration or a feeling of being constrained.</div>
+    </p>
+  </li>
+</ol>
+<!-- BOX GRIGIO -->
+<div class="w-full rounded-xl mt-8 mb-2 bg-gray-50 p-4 sm:p-6">
+<h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4">
+        Example
+      </h3>
+  <!-- BLOCCO AFFERMAZIONE SBAGLIATA -->
+  <div class="flex items-start gap-4 mb-2 mt-6">
+    <!-- Icona -->
+    <div class="text-green-500 text-4xl leading-none select-none ml-1">✅</div>
+
+    <!-- Testo -->
+    <div class="flex-1 text-gray-900">
+      <p class="text-base mt-1 translate-y-[-15px]">
+<strong>Showing the damaging pattern at the exact moment it occurs</strong> — for example, when autoplay automatically starts a new video after several repetitions — while avoiding excessive frequency and adjusting the label’s timing and appearance to each user’s individual behaviour.</p>
+    </div>
+  </div>
+
+  <!-- BLOCCO AFFERMAZIONE GIUSTA -->
+  <div class="flex items-start gap-4">
+    <!-- Icona -->
+    <div class="text-red-500 text-4xl leading-none select-none ml-1">❌</div>
+
+    <!-- Testo -->
+    <div class="flex-1 text-gray-900">
+      <p class="text-base mt-1 translate-y-[2px]">
+      Display the label about infinite scrolling in the middle of a video, without any context.
+    </p>
+    </div>
+  </div>
+
+  <!-- Testo allineato all'inizio dell'immagine -->
+    <div class="flex-1 mt-4 sm:mt-[2rem] text-gray-900">
+      <p class="text-base mb-3">
+      The <u>practical strategies</u> used in this example are <strong>4</strong>:</p>
+      <ol class="relative space-y-3 pl-3">
+
+  <!-- Punto 1 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">strategy <strong>3.2.1</strong>, because the correct version clearly states that it captures the <strong>right moment</strong>, namely when the <strong>pattern appears</strong>;</p>
+    </div>
+  </li>
+
+  <!-- Punto 2 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">strategy <strong>3.2.2</strong>, because it takes <strong>habituation</strong> into account and tries to avoid it;</p>
+    </div>
+  </li>
+
+  <!-- Punto 3 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">strategy <strong>3.2.3</strong>, because it specifies that the labels should not always be fixed in place, emphasising the <strong>dynamic nature</strong> of this tool;</p>
+    </div>
+  </li>
+
+  <!-- Punto 4 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">strategy <strong>3.2.5</strong>, because it defines the fact that the display time is <strong>different for each user.</strong></p>
+    </div>
+  </li>
+
+</ol>
+
+
+    </div>
+
+
+
+</div>
+
+      <!-- SOTTO-SEZIONE 3 -->
+        <h2 id="Grafica" class="text-xl font-semibold mt-6 mb-2 flex items-center gap-2">
+          <u class="decoration-1 underline-offset-4 decoration-yellow-400">3.3 Visual design</u>
+        </h2>
+        <div class="flex items-start gap-3">
+        <div class="flex items-stretch gap-2">
+          <span class="w-[6px] bg-gray-300 rounded-full self-stretch"></span>
+            <p class="text-xl sm:text-md leading-tight">
+          <strong class="font-semibold">Carefully calibrate the graphic elements of DTLs — hierarchies, spacing, typography, icons and colours — by analysing each component in detail.</strong>    
+              </p>
+        </div>
+        </div>
+<span class="block mt-2 mb-2 text-base sm:text-base leading-tight">Practical strategies:</span>
+
+      <ol class="custom-counter-33 space-y-5 mt-2 pl-2 mb-3 text-base text-gray-800">
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      Integrate DTLs into the interface <strong class="font-semibold">while respecting the platform’s visual identity,</strong>
+      keeping colours, style and graphic tone consistent. <br />
+      <div class="text-gray-500">The goal is to make the label feel like an integral part of the visual experience, avoiding the impression that it is something separate or out of place.</div>
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">You can use colour to communicate the severity level of the pattern,</strong>
+      while always remaining consistent with the brand’s palette and visual identity.
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      Use <strong class="font-semibold">clear and immediately recognisable icons,</strong> inspired by symbols already familiar
+      to users, to make the message easier to understand.
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      Favour elements that convey <strong class="font-semibold">trust and awareness,</strong>
+      avoiding visual references associated with danger or alarm.
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      Use <strong class="font-semibold">subtle micro-animations,</strong> such as a light blinking effect or a soft pulsing,
+      to draw attention to the DTL. <br />
+      <div class="text-gray-500">This can help make less prominent labels more visible,
+      encouraging interaction without feeling intrusive or artificial.
+      </div>
+    </p>
+  </li>
+</ol>
+<!-- Box grigia -->
+<div class="w-full rounded-xl mt-8 mb-2 bg-gray-50 p-4 sm:p-6">
+
+  <!-- Titolo -->
+  <h3 class="text-xl font-semibold leading-tight mb-4 px-1 underline decoration-yellow-400 decoration-1 underline-offset-4">
+    Example – TikTok
+  </h3>
+
+  <!-- Sezione immagini affiancate + icone laterali -->
+  <div class="flex flex-col lg:flex-row items-center justify-start gap-3">
+
+    <!-- Colonna X + immagine (icone a sinistra) -->
+    <div class="flex items-center gap-3">
+      <div class="text-red-500 text-4xl leading-none select-none translate-y-[-5px]">❌</div>
+      <img
+        src="Grafica1.svg"
+        alt="Phone mockup"
+        class="h-auto max-w-[300px] object-contain select-none mt-2 sm:mt-0"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Colonna ✓ + immagine (icone a sinistra) -->
+    <div class="flex items-center gap-3">
+      <div class="text-green-500 text-4xl leading-none select-none lg:ml-3 translate-y-[-5px]">✅</div>
+      <img
+        src="Grafica2.svg"
+        alt="Phone mockup"
+        class="h-auto max-w-[300px] object-contain select-none mt-2 lg:mt-0"
+        loading="lazy"
+      />
+    </div>
+
+  </div>
+
+  <!-- Testo sotto le immagini -->
+  <div class="mt-6 text-gray-900">
+    <p class="text-base leading-relaxed mb-3">
+      The correct example follows the following <u>practical strategies</u>:
+    </p>
+    <ol class="relative space-y-3 pl-3">
+
+  <!-- Punto 1 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>3.3.1</strong>, because the colours of the label <strong>respect the platform’s visual identity,</strong> avoiding tones that feel foreign or inconsistent;
+      </p>
+    </div>
+  </li>
+
+  <!-- Punto 2 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategies <strong>3.3.1</strong> and <strong>3.3.4</strong>, because the label uses a robot icon — <i>a symbol that can be associated with communication about patterns</i> — together with an exclamation mark that <strong>captures</strong> attention without conveying a sense of danger.
+      </p>
+    </div>
+  </li>
+
+</ol>
+
+  </div>
+
+</div>
+
+
+      <!-- SOTTO-SEZIONE 4 -->
+        <h2 id="Posizione" class="text-xl font-semibold mt-6 mb-2 flex items-center gap-2">
+          <u class="decoration-1 underline-offset-4 decoration-yellow-400">3.4 Positioning</u>
+        </h2>
+        <div class="flex items-start gap-3">
+        <div class="flex items-stretch gap-2">
+          <span class="w-[6px] bg-gray-300 rounded-full self-stretch"></span>
+            <p class="text-xl sm:text-md leading-tight">
+          <strong class="font-semibold">Place the DTL close to where the damaging pattern manifests, to encourage an immediate association between the label and the behaviour it describes.</strong>    
+              </p>
+        </div>
+        </div>
+<span class="block mt-2 mb-2 text-base sm:text-base leading-tight">Practical strategies:</span>
+
+      <ol class="custom-counter-34 space-y-5 mt-2 pl-2 mb-3 text-base text-gray-800">
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      If the pattern does not have a specific position on the screen, place the DTL based on <strong class="font-semibold">usability, visibility, accessibility and consistency</strong> with the other interface elements.
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      When the main interactive elements are <strong class="font-semibold">concentrated in the frame of the interface</strong>
+      (as in Reels or TikTok), <strong class="font-semibold">integrate the DTL into that same space.</strong> <br />
+      <div class="text-gray-500">This preserves visual consistency and prevents it from being perceived as a disruptive element.</div>
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      When there is not <strong class="font-semibold">enough space</strong> in the interface to integrate a DTL in a stable way,
+      <strong class="font-semibold">use overlay solutions.</strong>
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      For horizontal streaming video content, <strong class="font-semibold">place the DTL at the bottom of the screen,</strong>
+      gradually overlapping the area where the time bar usually appears. <br />
+      <div class="text-gray-500">A slow and subtle animation helps <strong class="font-semibold">draw attention</strong> without interrupting viewing, leveraging an area that is already familiar to the user and highly visible.</div>
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      Don’t limit yourself to typical label positions: a coherent placement is a <strong class="font-semibold">good starting point,</strong>
+      but true effectiveness lies in dynamism. <br />
+      <div class="text-gray-500">Once the user has associated a meaning with the DTL,
+      <strong>experiment with different positions</strong> to maintain its visibility and perceptual impact, also using
+      less conventional areas of the interface.</div>
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      If the interface already includes labels with questions or <strong class="font-semibold">interactive suggestions,</strong> such as those offered by
+      AI-based assistants (for example on Amazon), <strong class="font-semibold">integrate the DTL into these elements.</strong> <br />
+      <div class="text-gray-500">In this way, the label becomes part of the conversational flow, maintaining visual consistency and
+      reducing the risk of distraction or overlaps.</div>
+    </p>
+  </li>
+</ol>
+<!-- Box grigia a tutta larghezza della colonna testo -->
+<div class="w-full rounded-xl mt-8 mb-2 bg-gray-50 p-4 sm:p-6">
+  <div class="flex flex-col gap-4 md:flex-row md:items-start">
+
+    <!-- Contenitore immagine + titolo -->
+    <div class="flex flex-col items-center md:items-start">
+      <h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4">
+        Example – TikTok
+      </h3>
+
+      <img
+        src="Form1.png"
+        alt="Phone mockup"
+        class="h-auto max-w-[300px] object-contain select-none mt-2 sm:mt-0"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Testo allineato all'inizio dell'immagine -->
+    <div class="flex-1 sm:mt-[2rem] text-gray-900">
+      <p class="text-base -mt-1 mb-3 translate-y-[5px]">
+      The <u>practical strategies</u> used are <strong>2</strong>:</p>
+      
+      <ol class="relative space-y-3 pl-3">
+
+  <!-- Punto 1 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>3.4.1</strong>, because the label is placed in a <strong>clearly visible</strong> area and does not interfere with content consumption;
+      </p>
+    </div>
+  </li>
+
+  <!-- Punto 2 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>3.4.2</strong>, because it integrates naturally into the context, becoming an <strong>organic element</strong> among the interactive components of TikTok’s interface.
+      </p>
+    </div>
+  </li>
+
+</ol>
+    </div>
+
+  </div>
+  <!-- SECONDO BLOCCO -->
+<div class="flex flex-col gap-4 md:flex-row md:items-start mt-8">
+
+  <!-- Immagine + titolo -->
+  <div class="flex flex-col items-center md:items-start">
+    <h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4">Example – Amazon</h3>
+    <img
+      src="Posizione2.svg"
+      alt="Phone mockup"
+      class="h-auto max-w-[300px] object-contain select-none mt-2"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Testo a lato dell’immagine -->
+  <!-- Testo allineato all'inizio dell'immagine -->
+    <div class="flex-1 md:mt-[2rem] text-gray-900">
+      <p class="text-base mt-1 mb-3 translate-y-[5px]">
+      The <u>practical strategies</u> used are <strong>2</strong>:</p>
+      
+      <ol class="relative space-y-3 pl-3">
+
+  <!-- Punto 1 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>3.4.1</strong>, because the label is placed in a <strong>clearly visible</strong> area and does not interfere with content consumption;
+      </p>
+    </div>
+  </li>
+
+  <!-- Punto 2 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>3.4.4</strong>, because it creates an <strong>unexpected element,</strong> in a space where the time bar would usually appear, which inevitably attracts the <strong>user’s attention</strong>.
+      </p>
+    </div>
+  </li>
+
+</ol>
+    </div>
+</div>
+<!-- TERZO BLOCCO -->
+<div class="flex flex-col gap-4 md:flex-row md:items-start mt-8">
+
+  <!-- Immagine + titolo -->
+  <div class="flex flex-col items-center md:items-start">
+    <h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4">Example – YouTube</h3>
+    <img
+      src="Posizione3.svg"
+      alt="Phone mockup"
+      class="h-auto max-w-[300px] object-contain select-none mt-2"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Testo a lato dell’immagine -->
+  <!-- Testo allineato all'inizio dell'immagine -->
+    <div class="flex-1 md:mt-[2rem] text-gray-900">
+      <p class="text-base mt-1 mb-3 translate-y-[5px]">
+      The <u>practical strategy</u> used is <strong>1</strong>:</p>
+      
+      <ol class="relative space-y-3 pl-3">
+
+  <!-- Punto 1 -->
+  <li class="relative">
+    <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+    <div class="ml-5">
+      <p class="text-base translate-y-[2px]">
+        strategy <strong>3.4.1</strong>, because the label is placed in a <strong>clearly visible</strong> area, next to the title of a section of the interface, and does not interfere with content consumption;
+      </p>
+    </div>
+  </li>
+
+</ol>
+    </div>
+
+
+</div>
+</div>
+
+      <!-- SOTTO-SEZIONE 5 -->
+        <h2 id="Adattabilita" class="text-xl font-semibold mt-6 mb-2 flex items-center gap-2">
+          <u class="decoration-1 underline-offset-4 decoration-yellow-400">3.5 Adaptability</u>
+        </h2>
+        <div class="flex items-start gap-3">
+        <div class="flex items-stretch gap-2">
+          <span class="w-[6px] bg-gray-300 rounded-full self-stretch"></span>
+            <p class="text-xl sm:text-md leading-tight">
+          <strong class="font-semibold">Design DTLs as dynamic, adaptive systems that can evolve over time based on user behaviour and the context of use.</strong>    
+              </p>
+        </div>
+        </div>
+<span class="block mt-2 mb-2 text-base sm:text-base leading-tight">Practical strategies:</span>
+
+      <ol class="custom-counter-35 space-y-5 mt-2 pl-2 mb-3 text-base text-gray-800">
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">Vary the level of intervention of DTLs,</strong> alternating lighter, reflective or more proactive communications,
+      to gradually guide users towards greater awareness.
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      Make sure you can run <strong class="font-semibold">continuous A/B tests</strong> on colours, copy, targets, calls to action and display
+      frequency, in order to optimise the visual impact and perception of DTLs over time.
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      Some versions of the DTL can emphasise the <strong class="font-semibold">harm caused by the pattern,</strong> while others can highlight the time
+      spent by the user or how they could have acted more consciously. <br />
+      <div class="text-gray-500">It is important to design different variants to understand
+      which type of communication is <strong>most effective</strong> and how to target each label according to context and audience.</div>
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      If the user <strong class="font-semibold">repeatedly ignores the DTL,</strong> plan to change its tone and/or format to <strong class="font-semibold">recapture attention</strong>
+      and maintain communicative effectiveness over time.
+    </p>
+  </li>
+</ol>
+<!-- Box grigia a tutta larghezza della colonna testo -->
+<div class="w-full rounded-xl mt-8 mb-2 bg-gray-50 p-4 sm:p-6">
+  <!-- SECONDO BLOCCO -->
+  <div class="flex flex-col gap-4 md:flex-row md:items-start">
+
+    <!-- Immagine + titolo -->
+    <div class="flex flex-col items-center md:items-start">
+      <h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4">
+        Example – YouTube
+      </h3>
+      <img
+        src="Ada1.svg"
+        alt="Phone mockup"
+        class="h-auto max-w-[300px] object-contain select-none mt-2 sm:mt-0"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Seconda immagine -->
+    <div class="flex flex-col items-center md:items-start md:ml-6">
+      <img
+        src="Ada2.svg"
+        alt="Phone mockup"
+        class="h-auto max-w-[300px] object-contain select-none mt-2 md:mt-10"
+        loading="lazy"
+      />
+    </div>
+
+  </div>
+
+  <!-- Terza immagine + testo sotto (mobile) / a lato (desktop) -->
+  <div class="flex flex-col md:flex-row items-center md:items-start mt-6">
+    <img
+      src="Ada3.svg"
+      alt="Phone mockup"
+      class="h-auto max-w-[300px] object-contain select-none"
+      loading="lazy"
+    />
+
+    <!-- Testo allineato all'inizio dell'immagine -->
+    <div class="flex-1 text-gray-900 mt-4 md:ml-10">
+      <p class="text-base mb-3">
+        The <u>practical strategy</u> used is <strong>1</strong>:
+      </p>
+
+      <ol class="relative space-y-3 pl-3">
+        <!-- Punto 1 -->
+        <li class="relative">
+          <span class="absolute -left-3 top-1 h-5 w-5 rounded-full bg-yellow-400 border-4 border-white shadow"></span>
+          <div class="ml-5">
+            <p class="text-base">
+              strategy <strong>3.5.1</strong>, because as the <strong>time spent</strong> on the platform increases, the label changes and adapts its information based on the user’s <strong>behaviour</strong>.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+
+      <!-- SEZIONE 5 -->
+        <h1 id="Controllo" class="text-2xl md:text-4xl font-bold mt-8 mb-2">4. User control</h1>
+        <hr class="border-t border-gray-400">
+        <p class="text-base sm:text-base leading-relaxed mt-2 mb-3">
+          <strong class="font-semibold">User control</strong> is a <i>core principle of Design Transparency Labels.</i><br />
+          <span class="block mt-2">Each DTL should not only inform, but also offer the possibility to <strong class="font-semibold">act consciously,</strong> turning awareness into choice.<br />
+          <span class="block mt-2"><i>Giving control back</i> means allowing the user to <strong class="font-semibold">decide how to interact with the platform,</strong> strengthening trust and the perception of an autonomous and respectful experience.
+        </p>
+        <!-- SOTTO-SEZIONE 1 -->
+        <h2 id="Interattivita" class="text-xl font-semibold mt-6 mb-2 flex items-center gap-2">
+          <u class="decoration-1 underline-offset-4 decoration-yellow-400">4.1. Interactivity</u>
+        </h2>
+        <div class="flex items-start gap-3">
+        <div class="flex items-stretch gap-2">
+          <span class="w-[6px] bg-gray-300 rounded-full self-stretch"></span>
+        <p class="text-xl sm:text-md leading-tight">
+          <strong class="font-semibold">Whenever possible, include in the DTL the option to perform a concrete action (call to action) related to the damaging pattern.</strong> <br />
+          </p>
+        </div>
+        </div>
+          <span class="block mt-2 text-base sm:text-base leading-tight">Practical strategies:</span>
+
+        <ol class="custom-counter-41 space-y-4 mt-2 pl-2 mb-3 text-base text-gray-800">
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">Make the call to action always clear and easy to see,</strong> so that users feel they can actively influence their own behaviour.<br />
+      <div class="text-gray-500">Providing an immediate option that has real consequences helps the user <strong class="font-semibold">turn awareness into behaviour,</strong>
+      restoring a sense of control.</div>
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">Allow users to disable DTLs,</strong> so they are not perceived as an imposition or constraint.<br />
+      <div class="text-gray-500">Having a choice strengthens trust and helps build a <strong class="font-semibold">more transparent</strong> and respectful experience.</div>
+    </p>
+  </li>
+
+  <li>
+    <p class="text-base mt-1 translate-y-[-1px]">
+      <strong class="font-semibold">Integrate a feedback loop that allows the DTL to adapt over time:</strong>
+      if the user responds positively or interacts with the message, the label can <i>adjust its tone, frequency, or format in future appearances.</i> <br />
+      <div class="text-gray-500">An adaptive system enables more personalised communication and reduces the risk of annoyance or repetitiveness.</div>
+    </p>
+  </li>
+</ol>
+<!-- Box grigia a tutta larghezza della colonna testo -->
+<div class="w-full rounded-xl mt-8 mb-2 bg-gray-50 p-4 sm:p-6">
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-start">
+
+  </div>
+  
+  
+ <!-- SECONDO BLOCCO -->
+<div class="flex flex-col gap-4 md:flex-row md:items-start">
+
+  <!-- Immagine + titolo -->
+  <div class="flex flex-col items-center md:items-start">
+    <h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4">Example – Amazon</h3>
+    <img
+      src="Int2.svg"
+      alt="Phone mockup"
+      class="h-auto max-w-[300px] object-contain select-none mt-2"
+      loading="lazy"
+    />
+  </div>
+  <div class="flex flex-col items-center md:items-start md:ml-6">
+    <h3 class="text-xl font-semibold leading-tight mb-2 px-1 sm:mb-4 underline decoration-yellow-400 decoration-1 underline-offset-4 mt-2 md:mt-0">Example – TikTok</h3>
+    <img
+      src="Int3.svg"
+      alt="Phone mockup"
+      class="h-auto max-w-[300px] object-contain select-none mt-4"
+      loading="lazy"
+    />
+  </div>
+  
+  
+
+</div>
+<div class="flex-1 sm:mt-[2rem] text-gray-900">
+    <p class="text-base mt-4 sm:mt-1">
+      In both examples, the same practical strategy <strong>4.1.1</strong> is applied: the call to action is <strong>immediately recognisable,</strong> thanks to a clearly highlighted question (using font size and bold), accompanied by clear buttons that guide the user’s choice.
+    </p>
+  </div>
+</div>
+      </div>
+
+      <!-- INDICE -->
+      <aside class="hidden lg:block lg:col-start-10 lg:col-span-3 sticky top-28 h-fit py-0">
+        <h2 class="text-xl font-semibold mb-4 text-gray-800">Contents</h2>
+
+        <div class="relative flex">
+          <!-- Linea grigia principale -->
+          <div class="absolute left-0 top-0 bottom-0 w-px bg-gray-200"></div>
+
+          <!-- Elenco -->
+          <ul class="pl-6 space-y-3 text-base text-gray-700 relative" id="toc">
+            <li><a href="#Obiettivi" class="block hover:text-yellow-600 ">1. Role</a></li>
+            <ul class="pl-5 mt-2 space-y-2 text-base text-gray-600">
+                <li><a href="#Target" class="block hover:text-yellow-500">1.1. Target</a></li>
+                <li><a href="#Percezione" class="block hover:text-yellow-500">1.2. Perception and impact</a></li>
+              </ul>
+            <li>
+              <a href="#Linguaggio" class="block hover:text-yellow-500">2. Language</a>
+              <ul class="pl-5 mt-2 space-y-2 text-base text-gray-600">
+                <li><a href="#Tonodivoce" class="block hover:text-yellow-500">2.1. Tone of voice</a></li>
+                <li><a href="#Gancio" class="block hover:text-yellow-500">2.2. Hook</a></li>
+              </ul>
+            </li>
+            <li><a href="#Design" class="block hover:text-yellow-500">3. Design</a></li>
+            <ul class="pl-5 mt-2 space-y-2 text-base text-gray-600">
+            <li><a href="#Forme" class="block hover:text-yellow-500">3.1. Shape and size</a></li>
+                <li><a href="#Tempismo" class="block hover:text-yellow-500">3.2. Timing</a></li>
+                <li><a href="#Grafica" class="block hover:text-yellow-500">3.3. Visual design</a></li>
+                <li><a href="#Posizione" class="block hover:text-yellow-500">3.4. Positioning</a></li>
+                <li><a href="#Adattabilita" class="block hover:text-yellow-500">3.5. Adaptability</a></li>
+                </ul>
+            <li><a href="#Controllo" class="block hover:text-yellow-500">4. User control</a></li>
+            <ul class="pl-5 mt-2 space-y-2 text-base text-gray-600">
+            <li><a href="#Interattivita" class="block hover:text-yellow-500">4.1. Interactivity</a></li>
+                </ul>
+          </ul>
+
+
+          <!-- Barre gialle -->
+          <div id="active-bar" class="absolute left-0 w-px bg-yellow-400"></div>
+          <div id="sub-active-bar" class="absolute left-[1.25rem] w-px bg-yellow-400"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- SCRIPT -->
+  <script>
+    // --- MENU MOBILE ---
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('overlay');
+
+    function openMenu() {
+      mobileMenu.classList.remove('translate-x-full');
+      overlay.classList.remove('hidden');
+    }
+    function closeMenu() {
+      mobileMenu.classList.add('translate-x-full');
+      overlay.classList.add('hidden');
+    }
+    menuBtn?.addEventListener('click', openMenu);
+    closeBtn?.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+
+    // --- EVIDENZIAZIONE ATTIVA ---
+    const sections = document.querySelectorAll("h1[id], h2[id]");
+    const navLinks = document.querySelectorAll("#toc a");
+    const activeBar = document.getElementById("active-bar");
+    const subBar = document.getElementById("sub-active-bar");
+    const tocContainer = activeBar.parentElement;
+
+    let lastActiveLink = null;
+
+    function updateActive() {
+      const offset = 140;
+      const scrollY = window.scrollY || window.pageYOffset;
+
+      let currentSection = sections[0].getAttribute("id");
+
+      for (const section of sections) {
+        if (scrollY >= section.offsetTop - offset) {
+          currentSection = section.getAttribute("id");
+        } else break;
+      }
+
+      let activeLink = null;
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${currentSection}`) {
+          link.classList.add("active");
+          activeLink = link;
+        }
+      });
+
+      // Se non trova un link valido, resta sull’ultimo
+      if (!activeLink && lastActiveLink) activeLink = lastActiveLink;
+      else lastActiveLink = activeLink;
+
+      if (!activeLink) return;
+
+      const linkRect = activeLink.getBoundingClientRect();
+      const containerRect = tocContainer.getBoundingClientRect();
+      const isSub = activeLink.closest("ul").classList.contains("pl-5");
+
+      // Aggiornamento istantaneo e stabile
+      if (isSub) {
+        subBar.style.top = `${linkRect.top - containerRect.top}px`;
+        subBar.style.height = `${linkRect.height}px`;
+        subBar.style.opacity = 1;
+        activeBar.style.opacity = 0;
+      } else {
+        activeBar.style.top = `${linkRect.top - containerRect.top}px`;
+        activeBar.style.height = `${linkRect.height}px`;
+        activeBar.style.opacity = 1;
+        subBar.style.opacity = 0;
+      }
+    }
+
+    window.addEventListener("scroll", updateActive, { passive: true });
+    window.addEventListener("resize", updateActive);
+    document.addEventListener("DOMContentLoaded", updateActive);
+
+    // --- NASCONDI / MOSTRA NAVBAR SU SCROLL ---
+const navbar = document.getElementById("navbar");
+let lastScrollTop = 0;
+const scrollThreshold = 10; // margine per evitare sfarfallii
+
+window.addEventListener("scroll", () => {
+  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (Math.abs(currentScroll - lastScrollTop) < scrollThreshold) return;
+
+  if (currentScroll > lastScrollTop && currentScroll > 100) {
+    // Scorrendo in basso
+    navbar.classList.remove("navbar-show");
+    navbar.classList.add("navbar-hide");
+  } else {
+    // Scorrendo in alto
+    navbar.classList.remove("navbar-hide");
+    navbar.classList.add("navbar-show");
+  }
+
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+}, { passive: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Transparency Labels</title>
+  <link rel="icon" type="image/svg+xml" href="Icon4.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900">
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="bg-gray-900 text-white fixed w-full z-[100] top-0 left-0 shadow">
+    <div class="container mx-auto px-8 lg:px-2 ">
+      <!-- use a 12-col grid so we can align the link group with the main grid's aside on lg -->
+      <div class="grid grid-cols-12 items-center h-20 gap-10">
+        <a href="index.html" class="col-span-6 lg:col-span-3 flex items-center space-x-2">
+          <!--<img src="logo.svg" alt="Logo" class="w-8 h-8">-->
+        <h1 class="sm:block text-2xl md:text-4xl font-semibold leading-tight tracking-tight whitespace-nowrap text-yellow-300">Design Transparency Labels</h1>
+        </a>
+
+        <!-- Desktop link group: place it in the same columns as the aside (starts at col 10) -->
+        <div id="nav-link-group" class="grid col-span-6 lg:col-start-9 lg:col-span-4 space-x-4 sm:space-x-6 md:space-x-8 lg:space-x-16 hidden lg:flex ">
+          <a href="index.html" class="hover:text-yellow-300 text-lg sm:text-xl leading-tight tracking-tight">Home</a>
+          <a href="tesi.html" class="hover:text-yellow-300 text-lg sm:text-xl leading-tight tracking-tight">Thesis</a>
+          <a href="contatti.html" class="hover:text-yellow-300 text-lg sm:text-xl leading-tight tracking-tight">Contacts</a>
+        </div>
+
+        <!-- Mobile menu button aligned to the right on small and medium screens; hidden from lg up -->
+        <button id="menu-btn" aria-label="Open menu"
+  class="lg:hidden absolute right-4 top-1/2 -translate-y-1/2 p-2 
+         flex items-center justify-center
+         bg-transparent hover:bg-gray-800 rounded z-50">
+
+  <div class="flex flex-col justify-center items-center gap-1">
+    <span class="w-6 h-0.5 bg-white block"></span>
+    <span class="w-6 h-0.5 bg-white block"></span>
+    <span class="w-6 h-0.5 bg-white block"></span>
+  </div>
+</button>
+
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- OVERLAY + MENU MOBILE -->
+  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-[90]"></div>
+  <div id="mobile-menu" class="fixed top-0 right-0 w-3/4 h-full bg-gray-800 text-white transform translate-x-full transition-transform duration-300 z-[120] flex flex-col">
+    <div class="p-6 flex justify-end">
+      <button id="close-btn" class="text-2xl font-bold">&times;</button>
+    </div>
+    <nav class="flex flex-col text-lg font-medium space-y-4 px-6">
+      <a href="index.html" class="hover:text-yellow-400">Home</a>
+      <a href="tesi.html" class="hover:text-yellow-400">Thesis</a>
+      <a href="contatti.html" class="hover:text-yellow-400">Contacts</a>
+    </nav>
+  </div>
+<section class="relative overflow-hidden bg-white min-h-[60vh]">
+  
+  
+  <!-- BACKGROUND SVG RESPONSIVE -->
+  <img
+    src="bg-lines.svg"
+    alt=""
+    class="hidden sm:block absolute inset-0 w-full h-full object-cover pointer-events-none select-none opacity-60 z-0"
+  />
+
+  <!-- HERO SECTION -->
+  <main class="relative z-[10] pt-24 md:pt-14 lg:pt-14 pb-16">
+    <div class="container mx-auto px-8 lg:px-2 grid grid-cols-1 md:grid-cols-12 gap-10">
+
+      <!-- TESTO -->
+      <div class="md:col-span-12 lg:col-span-8 md:mt-14">
+        <h2 class="hidden md:block text-xl md:text-6xl font-bold leading-tight tracking-tight mb-2 md:mb-6">
+  The First 
+          <span class="text-black 
+    drop-shadow-[2px_0_0_#facc15] 
+    drop-shadow-[-2px_0_0_#facc15] 
+    drop-shadow-[0_2px_0_#facc15] 
+    drop-shadow-[0_-2px_0_#facc15]">
+    Design <br/> Transparency 
+  </span>
+  Guide
+</h2>
+
+
+
+        <!-- Testo -->
+        <h1 class="block md:hidden text-4xl font-bold leading-snug mb-4 pt-2">
+  The First 
+  <span class="text-black 
+    drop-shadow-[2px_0_0_#facc15]
+    drop-shadow-[-2px_0_0_#facc15]
+    drop-shadow-[0_2px_0_#facc15]
+    drop-shadow-[0_-2px_0_#facc15]">
+    Design Transparency
+  </span>
+  Guide
+</h1>
+
+
+        <p class="text-base leading-relaxed mb-4">
+          This guide is designed to <strong class="font-semibold">support designers, researchers, and design teams</strong> in creating interfaces that are more <i>transparent, aware, and respectful of users</i>.
+          The material presented stems from a <strong class="font-semibold">research process</strong> that includes <i>focus groups, co-design sessions, and a critical analysis</i> of the persuasive strategies used by major digital platforms.
+        </p>
+        <p class="text-base leading-relaxed mb-4">
+          The guide brings together a total of <u class="font-semibold decoration-1 underline-offset-2 decoration-yellow-400">10 guidelines for the creation of Design Transparency Labels (DTL)</u>, grouped into four core thematic areas: <strong class="font-semibold">role</strong>, <strong class="font-semibold">language</strong>, <strong class="font-semibold">design</strong>, and <strong class="font-semibold">user control</strong>.
+        </p>
+        <p class="text-base leading-relaxed mb-4">
+          These four areas represent the <strong class="font-semibold">essential pillars</strong> for designing DTLs.
+        </p>
+        <p class="text-base leading-relaxed mb-8">
+          Each guideline is <strong class="font-semibold">formulated in an actionable way</strong>, accompanied by <i>practical strategies, examples, and implementation suggestions</i>, designed to be easily integrated into the design process, from ideation through prototyping to implementation.
+        </p>
+
+        <!-- BOTTONE -->
+        <a href="pagina2.html" 
+           class="leading-tight tracking-tight inline-flex items-center border border-gray-800 px-6 py-3 rounded-full text-gray-800 font-semibold hover:bg-gray-900 hover:text-yellow-300 transition leading-tight tracking-tight">
+          GO TO THE GUIDE
+          <svg xmlns="http://www.w3.org/2000/svg" 
+               fill="none" 
+               viewBox="0 0 24 24" 
+               stroke-width="2" 
+               stroke="currentColor" 
+               class="w-5 h-5 ml-2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- IMMAGINE: visibile solo da desktop in su -->
+<!-- <div class="hidden lg:flex md:col-span-5 lg:col-span-4 self-start mt-20">
+  <div class="flex items-center justify-center">
+    <img 
+  src="Marketing-cuate.svg"
+  alt="Image"
+  class="w-[800px] h-auto object-contain"
+>
+  </div>
+</div>-->
+
+
+    </div>
+  </main>
+
+  <!-- SCRIPT -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('overlay');
+
+    function openMenu() {
+      mobileMenu.classList.remove('translate-x-full');
+      overlay.classList.remove('hidden');
+    }
+
+    function closeMenu() {
+      mobileMenu.classList.add('translate-x-full');
+      overlay.classList.add('hidden');
+    }
+
+    menuBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+  </script>
+
+</body>
+</html>

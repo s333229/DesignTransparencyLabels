@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thesis</title>
+  <link rel="icon" type="image/svg+xml" href="Icon4.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900">
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="bg-gray-900 text-white fixed w-full z-[100] top-0 left-0 shadow">
+    <div class="container mx-auto px-8 lg:px-2 ">
+      <!-- use a 12-col grid so we can align the link group with the main grid's aside on lg -->
+      <div class="grid grid-cols-12 items-center h-20 gap-10">
+        <a href="index.html" class="col-span-6 lg:col-span-3 flex items-center space-x-2">
+          <!--<img src="logo.svg" alt="Logo" class="w-8 h-8">-->
+        <h1 class="sm:block text-2xl md:text-4xl font-semibold leading-tight tracking-tight whitespace-nowrap text-yellow-300">Design Transparency Labels</h1>
+        </a>
+
+        <!-- Desktop link group: place it in the same columns as the aside (starts at col 10) -->
+        <div id="nav-link-group" class="grid col-span-6 lg:col-start-9 lg:col-span-4 space-x-4 sm:space-x-6 md:space-x-8 lg:space-x-16 hidden lg:flex ">
+          <a href="index.html" class="hover:text-yellow-300 text-lg sm:text-xl leading-tight tracking-tight">Home</a>
+          <a href="tesi.html" class="hover:text-yellow-300 text-lg sm:text-xl leading-tight tracking-tight">Thesis</a>
+          <a href="contatti.html" class="hover:text-yellow-300 text-lg sm:text-xl leading-tight tracking-tight">Contacts</a>
+        </div>
+
+        <!-- Mobile menu button aligned to the right on small and medium screens; hidden from lg up -->
+        <button id="menu-btn" aria-label="Apri menu"
+  class="lg:hidden absolute right-4 top-1/2 -translate-y-1/2 p-2 
+         flex items-center justify-center
+         bg-transparent hover:bg-gray-800 rounded z-50">
+
+  <div class="flex flex-col justify-center items-center gap-1">
+    <span class="w-6 h-0.5 bg-white block"></span>
+    <span class="w-6 h-0.5 bg-white block"></span>
+    <span class="w-6 h-0.5 bg-white block"></span>
+  </div>
+</button>
+
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- OVERLAY + MENU MOBILE -->
+  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-[90]"></div>
+  <div id="mobile-menu" class="fixed top-0 right-0 w-3/4 h-full bg-gray-800 text-white transform translate-x-full transition-transform duration-300 z-[120] flex flex-col">
+    <div class="p-6 flex justify-end">
+      <button id="close-btn" class="text-2xl font-bold">&times;</button>
+    </div>
+    <nav class="flex flex-col text-lg font-medium space-y-4 px-6">
+      <a href="index.html" class="hover:text-yellow-400">Home</a>
+      <a href="tesi.html" class="hover:text-yellow-400">Thesis</a>
+      <a href="contatti.html" class="hover:text-yellow-400">Contacts</a>
+    </nav>
+  </div>
+
+  <!-- PAGINA TESI -->
+<main class="pt-28 sm:pt-28 lg:pt-32 pb-20">
+  <div class="container mx-auto px-6 sm:px-8 max-w-6xl">
+
+    <!-- HEADER TESI -->
+<header class="mb-12 sm:mb-14">
+  <p class="text-sm font-medium uppercase tracking-[0.2em] text-gray-500 mb-3">
+    Master's Thesis
+  </p>
+  <h1 class="text-3xl sm:text-4xl font-bold leading-tight text-gray-900 mb-5">
+    Design Transparency labels: Enhancing Digital Agency through Ethical UI Disclosure
+  </h1>
+  <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+    This page presents the key information related to the thesis, the research project, and the academic context in which it was developed.
+  </p>
+</header>
+
+
+   <!-- BLOCCO: INFO ACCADEMICHE -->
+<section class="w-full rounded-2xl bg-gray-50 px-6 py-7 sm:px-8 sm:py-8 mb-10 shadow-sm">
+  <h2 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-5">
+    Academic Information
+  </h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-5 text-sm sm:text-base text-gray-800">
+    <div>
+      <p class="font-semibold text-gray-600">Degree Program</p>
+      <p>Cinema and Media Engineering</p>
+    </div>
+
+    <div>
+      <p class="font-semibold text-gray-600">University</p>
+      <p>Politecnico di Torino</p>
+    </div>
+
+    <div>
+      <p class="font-semibold text-gray-600">Department</p>
+      <p>Computer, Cinema and Mechatronics Engineering</p>
+    </div>
+
+    <div>
+      <p class="font-semibold text-gray-600">Academic Year</p>
+      <p>2024&nbsp;&ndash;&nbsp;2025</p>
+    </div>
+
+    <div>
+      <p class="font-semibold text-gray-600">Type</p>
+      <p>Experimental Thesis</p>
+    </div>
+
+    <div>
+      <p class="font-semibold text-gray-600">Language</p>
+      <p>Italian</p>
+    </div>
+  </div>
+</section>
+
+
+    <!-- BLOCCO: AUTORE E RELATORE -->
+<section class="mb-10">
+  <h2 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-5">
+    Author and Supervisor
+  </h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+    <!-- AUTORE -->
+    <div class="rounded-2xl bg-gray-50 px-6 py-6 shadow-sm">
+      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500 mb-2">
+        Author
+      </p>
+      <p class="text-base font-semibold text-gray-900 mb-1">
+        Luca Passarella
+      </p>
+      <p class="text-sm text-gray-700">
+        Master's student in Cinema and Media Engineering.
+      </p>
+    </div>
+
+    <!-- RELATORE -->
+    <div class="rounded-2xl bg-gray-50 px-6 py-6 shadow-sm">
+      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500 mb-2">
+        Supervisor
+      </p>
+      <p class="text-base font-semibold text-gray-900 mb-1">
+        Prof. Alberto Monge Roffarello
+      </p>
+      <p class="text-sm text-gray-700">
+        Professor and researcher.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+    <!-- BLOCCO: ABSTRACT -->
+<section class="w-full rounded-2xl bg-gray-50 px-6 py-7 sm:px-8 sm:py-8 mb-10 shadow-sm">
+  <h2 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-5">
+    Thesis Project Summary
+  </h2>
+  <p class="text-base sm:text-lg text-gray-800 leading-relaxed mb-4">
+    The thesis focuses on the design of <span class="font-semibold">Design Transparency Labels</span>
+    to make interactions with AI-driven interfaces—especially within social media—more understandable and transparent to users.
+  </p>
+  <p class="text-base sm:text-lg text-gray-800 leading-relaxed">
+    The work integrates theoretical analysis and hands-on experimentation through co-design sessions,
+    with the goal of developing visual and textual solutions that promote transparency,
+    comprehension, and digital wellbeing on digital platforms.
+  </p>
+</section>
+
+
+    <!-- BLOCCO: OBIETTIVI -->
+<section class="mb-10">
+  <h2 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-5">
+    Research Objectives
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="rounded-2xl bg-gray-50 px-6 py-6 shadow-sm">
+      <h3 class="text-base font-semibold text-gray-900 mb-3">Scientific Objectives</h3>
+      <ul class="list-disc list-inside text-sm sm:text-base text-gray-800 space-y-2">
+        <li>Map AI-driven dark patterns.</li>
+        <li>Analyze how and when AI influences user engagement.</li>
+        <li>Study transparency, user control, and digital wellbeing.</li>
+      </ul>
+    </div>
+
+    <div class="rounded-2xl bg-gray-50 px-6 py-6 shadow-sm">
+      <h3 class="text-base font-semibold text-gray-900 mb-3">Design Objectives</h3>
+      <ul class="list-disc list-inside text-sm sm:text-base text-gray-800 space-y-2">
+        <li>Organize co-design workshops.</li>
+        <li>Co-design intuitive and accessible labels.</li>
+        <li>Create guidelines for designers.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+    <!-- BLOCCO: PAROLE CHIAVE -->
+<section>
+  <h2 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">
+    Keywords
+  </h2>
+
+  <div class="flex flex-wrap gap-3">
+    <span class="px-3 py-1 rounded-full bg-gray-100 text-sm text-gray-800">Design Transparency Labels</span>
+    <span class="px-3 py-1 rounded-full bg-gray-100 text-sm text-gray-800">Dark Patterns</span>
+    <span class="px-3 py-1 rounded-full bg-gray-100 text-sm text-gray-800">AI</span>
+    <span class="px-3 py-1 rounded-full bg-gray-100 text-sm text-gray-800">Social Media</span>
+    <span class="px-3 py-1 rounded-full bg-gray-100 text-sm text-gray-800">UX Design</span>
+    <span class="px-3 py-1 rounded-full bg-gray-100 text-sm text-gray-800">Digital Wellbeing</span>
+    <span class="px-3 py-1 rounded-full bg-gray-100 text-sm text-gray-800">Co-design</span>
+    <span class="px-3 py-1 rounded-full bg-gray-100 text-sm text-gray-800">Ethical Transparency</span>
+  </div>
+</section>
+
+
+  </div>
+</main>
+
+  <!-- SCRIPT -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('overlay');
+
+    function openMenu() {
+      mobileMenu.classList.remove('translate-x-full');
+      overlay.classList.remove('hidden');
+    }
+
+    function closeMenu() {
+      mobileMenu.classList.add('translate-x-full');
+      overlay.classList.add('hidden');
+    }
+
+    menuBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+  </script>
+
+</body>
+</html>
